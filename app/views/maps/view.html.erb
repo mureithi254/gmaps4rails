@@ -41,12 +41,31 @@
     <script>
       function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
+        var burt = {lat: -23.498818, lng: 133.563194};
+        var south = {lat: -26.917467, lng: 133.035850};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: uluru
         });
+         var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: south
+        });
+         var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: burt
+        
+        });
         var marker = new google.maps.Marker({
           position: uluru,
+          map: map
+        });
+         var marker = new google.maps.Marker({
+          position: south,
+          map: map
+        });
+        var marker = new google.maps.Marker({
+          position: burt,
           map: map
         });
       }
