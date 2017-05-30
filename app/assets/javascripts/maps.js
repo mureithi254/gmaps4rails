@@ -2,22 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-var handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id: 'geolocation'} }, function(){
-  // be aware chrome >= 50 requires https for geolocation to work
-  if(navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(displayOnMap);
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "width":  32,
+        "height": 32
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
 });
-
-function displayOnMap(position){
-  var marker = handler.addMarker({
-    lat: position.coords.latitude,
-    lng: position.coords.longitude
-  });
-  handler.map.centerOn(marker);
-};
-
 
 
 
